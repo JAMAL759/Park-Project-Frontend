@@ -44,6 +44,16 @@ const UpdateCustoemr=async (id, data)=>{
 return err
     }
 }
+const listCustomerById=async (id)=>{
+      try{
+        const url=`${baseUrl}/customer/${id}`
+       const response=await axios.get(url)
+       return response
+    }
+    catch(err){
+return err
+    }
+}
 
 
 export{
@@ -51,4 +61,5 @@ export{
     deleteCustomer,
     ListAllCustomer,
     UpdateCustoemr,
+    listCustomerById
 }
