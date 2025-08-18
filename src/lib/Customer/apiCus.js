@@ -14,7 +14,7 @@ return err
 }
 const deleteCustomer=async (id) => {
       try{
-        const url=`${baseUrl}/admin/${id}`
+        const url=`${baseUrl}/customer/${id}`
        const response=await axios.delete(url)
        return response
     }
@@ -22,8 +22,20 @@ const deleteCustomer=async (id) => {
 return err
     }
 }
-
+const ListAllCustomer=async () => {
+      try{
+        const url=`${baseUrl}/customer/`
+        console.log(url)
+       const response=await axios.get(url)
+       console.log(response)
+       return response.data
+    }
+    catch(err){
+return err
+    }
+}
 export{
     createNewCus,
-    deleteCustomer
+    deleteCustomer,
+    ListAllCustomer
 }
