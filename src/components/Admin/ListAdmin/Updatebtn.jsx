@@ -1,12 +1,10 @@
 import{useState} from "react"
-import { create } from "../../../../../../../../classwork/unit3/day-4/react-pets-frontend/lib/api"
+import {  UpdateAdmin } from "../../../../../../../../classwork/unit3/day-4/react-pets-frontend/lib/api"
 
-const AddAdminForm=()=>{
+const UpdateAdminForm=({admin})=>{
     const [formData,setFormData]=useState({
-         Name: '',
-    email: '',
-    password:''
-
+         Name:admin.Name,
+    email:admin.email,
     })
 
      const handleChange = (event) => {
@@ -23,23 +21,21 @@ const AddAdminForm=()=>{
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const response = await create(formData)
+        const response = await UpdateAdmin(formData)
         console.log(response)
     }
 
     return (
         <div>
-            <h2>Add New Admin</h2>
+            <h2>Edit Admin</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name:</label>
                 <input id="name" name="name" onChange={handleChange} value={formData.name} />
                 <label htmlFor="email">Email:</label>
                 <input name="email" id="email" onChange={handleChange} value={formData.email} />
-                <label htmlFor="password">Password:</label>
-                <input id="password" name="password" onChange={handleChange} value={formData.password} />
                 <button type="submit">Submit</button>
             </form>
         </div>
     )
 }
-export default AddAdminForm
+export default UpdateAdminForm

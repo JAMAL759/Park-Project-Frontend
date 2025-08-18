@@ -13,7 +13,7 @@ return err
     }
 }
 
-const deleteParking=async (id) => {
+const deleteAdmin=async (id) => {
       try{
         const url=`${baseUrl}/admin/${id}`
        const response=await axios.delete(url)
@@ -58,7 +58,7 @@ return err
 
 export{
     create,
-    deleteParking,
+    deleteAdmin,
     ListAllAdmin,
     listAdminById,
     UpdateAdmin
