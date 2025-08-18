@@ -2,15 +2,19 @@ import React from 'react';
 import { createCompany } from '../../lib/Company/libCreate';
 
 
-const CompanyCreation = ({data , AllCompany}) => {
+const CompanyCreation = ({data }) => {
     
     const Creation = async () => {
 
         await createCompany(data);
-        AllCompany();
+  
 }
 
 return (
     <button onClick = {Creation}> Create </button>
 )
+}
+
+export {
+    CompanyCreation
 }

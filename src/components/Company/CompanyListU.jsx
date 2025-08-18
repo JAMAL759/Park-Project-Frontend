@@ -17,7 +17,7 @@ const Companies = ({ID}) => {
     })
 
     const handleChange = (event) => {
-        setFormData({...CompanyData , [event.target.name]:event.target.value});
+        setCompanyData({...CompanyData , [event.target.name]:event.target.value});
 }
 
 
