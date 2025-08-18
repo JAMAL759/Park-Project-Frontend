@@ -26,18 +26,20 @@ return err
 const ListAllAdmin=async () => {
       try{
         const url=`${baseUrl}/admin/`
+        console.log(url)
        const response=await axios.get(url)
-       return response
+       console.log(response)
+       return response.data
     }
     catch(err){
 return err
     }
 }
 
-const UpdateAdmin=async (id)=>{
+const UpdateAdmin=async (id, data)=>{
       try{
         const url=`${baseUrl}/admin/${id}`
-       const response=await axios.put(url)
+       const response=await axios.put(url, data)
        return response
     }
     catch(err){

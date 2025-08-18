@@ -1,5 +1,5 @@
 import{useState} from "react"
-import { create } from "../../../../../../../../classwork/unit3/day-4/react-pets-frontend/lib/api"
+import { create } from "../../../lib/Admin/api"
 
 const AddAdminForm=()=>{
     const [formData,setFormData]=useState({
@@ -31,8 +31,8 @@ const AddAdminForm=()=>{
         <div>
             <h2>Add New Admin</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label>
-                <input id="name" name="name" onChange={handleChange} value={formData.name} />
+                <label htmlFor="Name">Name:</label>
+                <input id="Name" name="Name" onChange={handleChange} value={formData.Name} />
                 <label htmlFor="email">Email:</label>
                 <input name="email" id="email" onChange={handleChange} value={formData.email} />
                 <label htmlFor="password">Password:</label>

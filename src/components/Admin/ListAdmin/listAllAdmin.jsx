@@ -3,32 +3,41 @@ import { ClipLoader } from "react-spinners"
 import { ListAllAdmin } from "../../../lib/Admin/api"
 import AdminDeleteButton from "./deleteBtn"
 import UpdateAdminForm from "./Updatebtn"
-const PetList = () => {
+import AddAdminForm from "../FormAddNewAdmin/FormAddNewAdmin"
+const AddminListPage = () => {
     const [admin, setAdmin] = useState([])
 
- 
+    async function fetchAdmins() {
+        const admins = await ListAllAdmin()
+        console.log(admins)
+        setAdmin(admins)
+
+    }
+
     useEffect(() => {
-        setAdmin(ListAllAdmin().data)
+        fetchAdmins()
     }, [])
 
     return (
         <div>
-        
+            <AddAdminForm />
+
             <ol>
-                
+
                 {
                     admin.length
                         ?
                         admin.map((admins, i) => {
-                            return(
-                            <>
-                            <p key={i}>{admins.name}</p>
-                            <p key={i}>{admins.email}</p>
-                      
-                            </>
+                            return (
+                                <div key={i}>
+                                    <p >{admins.Name}</p>
+                                    <p >{admins.email}</p>
+                                    <UpdateAdminForm admin={admins} />
+
+                                </div>
 
 
-                            
+
                             )
                         }) :
                         <ClipLoader color="#FF00FF" />
@@ -38,4 +47,4 @@ const PetList = () => {
         </div>
     )
 }
-export default PetList
+export default AddminListPage

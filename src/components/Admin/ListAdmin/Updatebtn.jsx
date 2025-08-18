@@ -1,7 +1,8 @@
 import{useState} from "react"
-import {  UpdateAdmin } from "../../../../../../../../classwork/unit3/day-4/react-pets-frontend/lib/api"
+import { UpdateAdmin } from "../../../lib/Admin/api"
 
 const UpdateAdminForm=({admin})=>{
+    const id=admin._id
     const [formData,setFormData]=useState({
          Name:admin.Name,
     email:admin.email,
@@ -21,7 +22,7 @@ const UpdateAdminForm=({admin})=>{
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const response = await UpdateAdmin(formData)
+        const response = await UpdateAdmin(id,formData)
         console.log(response)
     }
 
@@ -29,8 +30,8 @@ const UpdateAdminForm=({admin})=>{
         <div>
             <h2>Edit Admin</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label>
-                <input id="name" name="name" onChange={handleChange} value={formData.name} />
+                <label htmlFor="Name">Name:</label>
+                <input id="Name" name="Name" onChange={handleChange} value={formData.Name} />
                 <label htmlFor="email">Email:</label>
                 <input name="email" id="email" onChange={handleChange} value={formData.email} />
                 <button type="submit">Submit</button>
