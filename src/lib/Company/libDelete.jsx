@@ -2,7 +2,7 @@ import axios from "axios";
 
 const deleteCompany = async (Identity) => {
     try {
-        const response = await axios.delete("http://localhost:3000/company");
+        const response = await axios.delete(`http://localhost:3000/company/${Identity}`);
         return response
     } catch(err) {
         return err
