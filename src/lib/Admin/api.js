@@ -23,9 +23,31 @@ const deleteParking=async (id) => {
 return err
     }
 }
-const ListAllParking=async () => {
+const ListAllAdmin=async () => {
       try{
-        const url=`${baseUrl}/pet/`
+        const url=`${baseUrl}/admin/`
+       const response=await axios.get(url)
+       return response
+    }
+    catch(err){
+return err
+    }
+}
+
+const UpdateAdmin=async (id)=>{
+      try{
+        const url=`${baseUrl}/admin/${id}`
+       const response=await axios.put(url)
+       return response
+    }
+    catch(err){
+return err
+    }
+}
+
+const listAdminById=async (id)=>{
+      try{
+        const url=`${baseUrl}/admin/${id}`
        const response=await axios.get(url)
        return response
     }
@@ -36,6 +58,10 @@ return err
 
 export{
     create,
-    deleteParking
+    deleteParking,
+    ListAllAdmin,
+    listAdminById,
+    UpdateAdmin
+
 }
 
