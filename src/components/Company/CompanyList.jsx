@@ -6,7 +6,7 @@ import{ClipLoader} from "react-spinners";
 import { useEffect , useState } from 'react';
 
 
-const Companies = () => {
+const CompanyList = () => {
     const[Company , setCompany] = useState([]);
 
     const CompanyGetter = async () => {
@@ -58,4 +58,4 @@ const Companies = () => {
 }
 
 
-export default Companies;
+export default CompanyList;

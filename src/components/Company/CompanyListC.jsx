@@ -5,7 +5,9 @@ import { CompanyCreation } from './CompanyCreate';
 import{ClipLoader} from "react-spinners";
 import { useEffect , useState } from 'react';
 
-const Companies = ({ID}) => {
+
+
+const CompanyListC = ({ID}) => {
     const[Company , setCompany] = useState([]);
 
     const [CompanyData , setCompanyData] = useState({
@@ -40,20 +42,21 @@ const Companies = ({ID}) => {
 
     {
                    
-                        Company.map(Company=> {
+                        Company.map( (Company , id )=> {
 
                           
                             return (
 
                                 
                                 <>
+                                <div key={id} id="CompanyCard"> 
                                     <p>{Company.Name}</p>
                                     <p>{Company.Service}</p>
                                     <p>{Company.AreaSize}</p>
                                     <p>{Company.Location}</p>
                                     <p>{Company.Admin}</p>
 
-
+                                    </div>
                                 </>
                             )
                          
@@ -66,46 +69,52 @@ const Companies = ({ID}) => {
 
 
 
-<h3> {Track.title} </h3>
+
             <form
-             
+        
             >
-                <label htmlFor= {key}>title</label>
+                <label htmlFor ="Name" >Name</label>
                 <input
-                    id= {key}
+                  
                     name= "Name"
                     onChange={handleChange}
-                    value={formData.title}
+                    value={CompanyData.title}
                 />
 
+            <label htmlFor ="Service" >Service</label>
                 <input
-                    id= {key}
+                  
                     name= "Service"
                     onChange={handleChange}
-                    value={formData.Service}
+                    value={CompanyData.Service}
                 />
 
+        <label htmlFor ="AreaSize" >AreaSize</label>
                 <input
-                    id= {key}
+                    
                     name= "AreaSize"
                     onChange={handleChange}
-                    value={formData.AreaSize}
+                    value={CompanyData.AreaSize}
                 />
 
+        <label htmlFor ="Location" >Location</label>
                 <input
-                    id= {key}
+                  
                     name= "Location"
                     onChange={handleChange}
-                    value={formData.Location}
+                    value={CompanyData.Location}
                 />
 
+
+            <label htmlFor ="Admin" >Admin</label>
                 <input
-                    id= {key}
+               
                     name= "Admin"
                     onChange={handleChange}
-                    value={formData.Admin}
+                    value={CompanyData.Admin}
                 />
              
+             <CompanyCreation data = {CompanyData}/>
              
             </form>
 
@@ -122,4 +131,4 @@ const Companies = ({ID}) => {
 }
 
 
-export default Companies;
+export default CompanyListC;
