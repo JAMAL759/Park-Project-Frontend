@@ -44,10 +44,12 @@
 
 #sideMenu{
   display: flex;
-  background-color: red;
+  background-color:  #242424;
   width: 100px;
   justify-items: center;
-  height:100vh
+  height:100vh;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
 }
 
 #Grid {
