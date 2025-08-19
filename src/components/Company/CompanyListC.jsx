@@ -50,11 +50,11 @@ const CompanyListC = ({ID}) => {
                                 
                                 <>
                                 <div key={id} id="CompanyCard"> 
-                                    <p>{Company.Name}</p>
-                                    <p>{Company.Service}</p>
-                                    <p>{Company.AreaSize}</p>
-                                    <p>{Company.Location}</p>
-                                    <p>{Company.Admin}</p>
+                                    <h1>{Company.Name}</h1>
+                                    <h2 id="h2COmpanyCard"> Service : {Company.Service}</h2>
+                                    <h2 id="h2COmpanyCard2" > area size : {Company.AreaSize}</h2>
+                                    <h2> Location: {Company.Location}</h2>
+                                    <h2>{Company.Admin}</h2>
 
                                     </div>
                                 </>
