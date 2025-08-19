@@ -33,9 +33,20 @@ const ListAllBook=async () => {
 return err
     }
 }
+const UpdateBook=async (id, data)=>{
+      try{
+        const url=`${baseUrl}/book/${id}`
+       const response=await axios.put(url, data)
+       return response
+    }
+    catch(err){
+return err
+    }
+}
 
 export{
     createNewBook,
     deleteBook,
-    ListAllBook
+    ListAllBook,
+    UpdateBook
 }
