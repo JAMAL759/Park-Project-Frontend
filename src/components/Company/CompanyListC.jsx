@@ -16,7 +16,7 @@ const CompanyListC = ({ ID }) => {
     const [Admin, setAdmin] = useState({});
 
 
-    const [isForm , setIsForm] = useState(false);
+    const [isForm, setIsForm] = useState(false);
 
     const [CompanyData, setCompanyData] = useState({
         Name: '',
@@ -40,18 +40,19 @@ const CompanyListC = ({ ID }) => {
     }
 
 
-    const handleChangeU = (event) => {
-        setS({ ...UForm, [event.target.name]: event.target.value });
+    const handleChangeU = (data) => {
+        setUForm({ ...UForm,  data });
     }
-    
 
 
-    const handleChecker = () => {
-        
+
+    const handleChecker = (data) => {
+
         setIsForm(true);
 
-        console.log( "This is FormU = " , isForm)
-       
+
+        console.log("This is FormU = ", isForm)
+        handleChangeU(data)
     }
 
     const CompanyGetter = async () => {
@@ -66,15 +67,16 @@ const CompanyListC = ({ ID }) => {
         CompanyGetter();
     }, []);
 
-  
 
+
+  
 
 
     return (
 
         <>
 
-            <div id = "gridCompanyxll">
+            <div id="gridCompanyxll">
 
                 {
 
@@ -82,7 +84,7 @@ const CompanyListC = ({ ID }) => {
 
 
                         return (
-                                
+
 
                             <>
                                 <div id="CardMainGrid">
@@ -92,17 +94,17 @@ const CompanyListC = ({ ID }) => {
                                         <h2 id="h2COmpanyCard2" > area size : {Company.AreaSize}</h2>
                                         <h2> Location: {Company.Location}</h2>
 
-                                    
-                                    
-                                        {Company.Admin.map ((obj) => {
+
+
+                                        {Company.Admin.map((obj) => {
 
                                             return (
                                                 <>
-                                                <h2> {obj.Name} </h2>
+                                                    <h2> {obj.Name} </h2>
                                                 </>
                                             )
                                         })}
-                                      
+
                                         {/* const listAdminById=async (id)=>{
       try{
         const url=`${baseUrl}/admin/${id}`
@@ -115,24 +117,20 @@ return err
 } */}
                                     </div>
                                 </div>
-                                <div id='delete-container'> 
-                                <CompnayDelete
-                                        ID = {Company._id} />
+                                <div id='delete-container'>
+                                    <CompnayDelete
+                                        ID={Company._id} />
 
 
                                 </div>
 
-                                <button onClick={handleChecker}>update</button>
-                                         {
-                                            isForm
-                                            ?
-                                            <CompanyUpdate company={Company} setIsShow={isForm}/>
-                                            : 
-                                            null
-                                         }
-                               
-                                            
-                                            {/* {isForm 
+                                <button onClick={handleChecker(Company)}>update</button>
+                                {
+
+                                }
+
+
+                                {/* {isForm 
                                             
                                             ? 
 
@@ -187,7 +185,7 @@ return err
 </form> */}
 
 
-                                            {/* </>  
+                                {/* </>  
                                             
                                             : 
                                             "ds"} */}
@@ -200,6 +198,15 @@ return err
 
 
                 }
+
+                <div> 
+               { isForm
+                    ?
+                    <CompanyUpdate company={UForm} setIsShow={isForm}/>
+                    : 
+                    null
+               }
+                </div>
 
 
 
