@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { CompanyCreation } from './CompanyCreate';
-
 import{ClipLoader} from "react-spinners";
 import { useEffect , useState } from 'react';
 
+import  "../../App.css"
 
 
 const CompanyListC = ({ID}) => {

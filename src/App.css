@@ -61,3 +61,17 @@
    display: flex;
    
 }
+
+#CompanyCard {
+
+  display: flex;
+  width: 350px;
+  height: 250px;
+  flex-direction: column;
+  /* background-color: rgba(rgba(0, 255, 225, 0.034), rgb(7, 40, 35), rgba(18, 18, 43, 0.125), 0.5); */
+  background-color: rgb(177, 207, 230);
+  border-radius: 10px;
+  margin: auto
+
+
+}
