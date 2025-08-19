@@ -4,7 +4,8 @@ import { CompanyCreation } from './CompanyCreate';
 import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from 'react';
 import { listAdminById } from '../../lib/Admin/api';
-
+import CompnayDelete from "./CompnayDelete"
+import CompanyUpdate from "./CompnayDelete"
 
 import "../../App.css"
 
@@ -15,6 +16,15 @@ const CompanyListC = ({ ID }) => {
     const [Admin, setAdmin] = useState({});
 
     const [CompanyData, setCompanyData] = useState({
+        Name: '',
+        Service: '',
+        AreaSize: '',
+        Location: '',
+        Admin: ''
+    })
+
+
+    const [UForm, setUForm] = useState({
         Name: '',
         Service: '',
         AreaSize: '',
@@ -47,7 +57,7 @@ const CompanyListC = ({ ID }) => {
 
         <>
 
-            <ol>
+            <div id = "gridCompanyxll">
 
                 {
 
@@ -64,6 +74,7 @@ const CompanyListC = ({ ID }) => {
                                         <h2 id="h2COmpanyCard"> Service : {Company.Service}</h2>
                                         <h2 id="h2COmpanyCard2" > area size : {Company.AreaSize}</h2>
                                         <h2> Location: {Company.Location}</h2>
+
                                         {Company.Admin.map ((obj) => {
 
                                             return (
@@ -72,6 +83,7 @@ const CompanyListC = ({ ID }) => {
                                                 </>
                                             )
                                         })}
+                                      
 
                                         {/* const listAdminById=async (id)=>{
       try{
@@ -85,6 +97,13 @@ return err
 } */}
                                     </div>
                                 </div>
+                                <div id='delete-container'> 
+                                <CompnayDelete
+                                        ID = {Company._id} />
+
+                                </div>
+                             
+                                
                             </>
                         )
 
@@ -148,7 +167,7 @@ return err
 
 
 
-            </ol>
+            </div>
 
 
 
