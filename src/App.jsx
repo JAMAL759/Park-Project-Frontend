@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import AddminListPage from './components/Admin/ListAdmin/listAllAdmin'
 import { ClipLoader } from 'react-spinners'
 import './App.css'
 
@@ -9,25 +9,8 @@ const App = () => {
 
   return (
     <>
-      <div id="xlGrid">
-
-
-        <div id="Grid">
-
-          <div id="sideMenu">
-            <p> alksdjfkl;jasdf</p>
-          </div>
-
-        </div>
-
-       
-<div>
-<h1> Create </h1>
-<CompanyListC />
-</div>
-
-
-      </div>
+    <AddminListPage/>
+  
 
     </>
   )
