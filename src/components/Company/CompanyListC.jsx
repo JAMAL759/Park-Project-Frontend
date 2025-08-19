@@ -1,131 +1,159 @@
 import React from 'react';
 import axios from 'axios';
 import { CompanyCreation } from './CompanyCreate';
-import{ClipLoader} from "react-spinners";
-import { useEffect , useState } from 'react';
+import { ClipLoader } from "react-spinners";
+import { useEffect, useState } from 'react';
+import { listAdminById } from '../../lib/Admin/api';
 
-import  "../../App.css"
+
+import "../../App.css"
 
 
-const CompanyListC = ({ID}) => {
-    const[Company , setCompany] = useState([]);
+const CompanyListC = ({ ID }) => {
+    const [Company, setCompany] = useState([]);
 
-    const [CompanyData , setCompanyData] = useState({
+    const [Admin, setAdmin] = useState({});
+
+    const [CompanyData, setCompanyData] = useState({
         Name: '',
         Service: '',
         AreaSize: '',
         Location: '',
-        Admin:''
+        Admin: ''
     })
 
     const handleChange = (event) => {
-        setCompanyData({...CompanyData , [event.target.name]:event.target.value});
-}
+        setCompanyData({ ...CompanyData, [event.target.name]: event.target.value });
+    }
 
 
     const CompanyGetter = async () => {
 
-    const urlCall = await axios.get("http://localhost:3000/company");     
-           console.log(urlCall);
-           setCompany(urlCall.data);
-    } 
+        const urlCall = await axios.get("http://localhost:3000/company");
+        console.log(urlCall);
+        setCompany(urlCall.data);
+    }
 
-    useEffect (() => {
+
+    useEffect(() => {
         CompanyGetter();
-    } , []);
+    }, []);
+
+  
+
+
 
     return (
 
-    <> 
-    
-    <ol> 
+        <>
 
-    {
-                   
-                        Company.map( (Company , id )=> {
+            <ol>
 
-                          
-                            return (
+                {
 
-                                
-                                <>
-                                <div key={id} id="CompanyCard"> 
-                                    <h1>{Company.Name}</h1>
-                                    <h2 id="h2COmpanyCard"> Service : {Company.Service}</h2>
-                                    <h2 id="h2COmpanyCard2" > area size : {Company.AreaSize}</h2>
-                                    <h2> Location: {Company.Location}</h2>
-                                    <h2>{Company.Admin}</h2>
+                    Company.map((Company, id) => {
 
+
+                        return (
+
+
+                            <>
+                                <div id="CardMainGrid">
+                                    <div key={id} id="CompanyCard">
+                                        <h1>{Company.Name}</h1>
+                                        <h2 id="h2COmpanyCard"> Service : {Company.Service}</h2>
+                                        <h2 id="h2COmpanyCard2" > area size : {Company.AreaSize}</h2>
+                                        <h2> Location: {Company.Location}</h2>
+                                        {Company.Admin.map ((obj) => {
+
+                                            return (
+                                                <>
+                                                <h2> {obj.Name} </h2>
+                                                </>
+                                            )
+                                        })}
+
+                                        {/* const listAdminById=async (id)=>{
+      try{
+        const url=`${baseUrl}/admin/${id}`
+       const response=await axios.get(url)
+       return response
+    }
+    catch(err){
+return err
+    }
+} */}
                                     </div>
-                                </>
-                            )
-                         
-                        })
+                                </div>
+                            </>
+                        )
 
-                       
-                  
-                     
+                    })
+
+
+
+
                 }
 
 
 
 
-            <form
-        
-            >
-                <label htmlFor ="Name" >Name</label>
-                <input
-                  
-                    name= "Name"
-                    onChange={handleChange}
-                    value={CompanyData.title}
-                />
+                <form
 
-            <label htmlFor ="Service" >Service</label>
-                <input
-                  
-                    name= "Service"
-                    onChange={handleChange}
-                    value={CompanyData.Service}
-                />
+                >
+                    <label htmlFor="Name" >Name</label>
+                    <input
 
-        <label htmlFor ="AreaSize" >AreaSize</label>
-                <input
-                    
-                    name= "AreaSize"
-                    onChange={handleChange}
-                    value={CompanyData.AreaSize}
-                />
+                        name="Name"
+                        onChange={handleChange}
+                        value={CompanyData.title}
+                    />
 
-        <label htmlFor ="Location" >Location</label>
-                <input
-                  
-                    name= "Location"
-                    onChange={handleChange}
-                    value={CompanyData.Location}
-                />
+                    <label htmlFor="Service" >Service</label>
+                    <input
 
+                        name="Service"
+                        onChange={handleChange}
+                        value={CompanyData.Service}
+                    />
 
-            <label htmlFor ="Admin" >Admin</label>
-                <input
-               
-                    name= "Admin"
-                    onChange={handleChange}
-                    value={CompanyData.Admin}
-                />
-             
-             <CompanyCreation data = {CompanyData}/>
-             
-            </form>
+                    <label htmlFor="AreaSize" >AreaSize</label>
+                    <input
+
+                        name="AreaSize"
+                        onChange={handleChange}
+                        value={CompanyData.AreaSize}
+                    />
+
+                    <label htmlFor="Location" >Location</label>
+                    <input
+
+                        name="Location"
+                        onChange={handleChange}
+                        value={CompanyData.Location}
+                    />
 
 
+                    <label htmlFor="Admin" >Admin</label>
+                    <input
 
-    </ol>
-    
-    
-    
-    
-    </>
+                        name="Admin"
+                        onChange={handleChange}
+                        value={CompanyData.Admin}
+                    />
+
+                    <CompanyCreation data={CompanyData} />
+
+                </form>
+
+
+
+            </ol>
+
+
+
+
+        </>
 
     )
 }

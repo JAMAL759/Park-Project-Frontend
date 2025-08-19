@@ -62,6 +62,15 @@
    
 }
 
+
+
+#CardMainGrid{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row ;
+}
+
+
 #CompanyCard {
 
   display: flex;
@@ -71,7 +80,7 @@
   /* background-color: rgba(rgba(0, 255, 225, 0.034), rgb(7, 40, 35), rgba(18, 18, 43, 0.125), 0.5); */
   background-color: rgb(177, 207, 230);
   border-radius: 10px;
-  margin: auto
+  margin: auto;
 
 
 }
@@ -86,3 +95,4 @@
   margin-top: -15px;
   color: black;
 }
+
