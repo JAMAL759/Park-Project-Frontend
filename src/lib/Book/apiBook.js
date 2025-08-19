@@ -11,7 +11,18 @@ const createNewBook =async (data) =>{
 return err
     }
 }
+const deleteBook=async (id) => {
+      try{
+        const url=`${baseUrl}/customer/${id}`
+       const response=await axios.delete(url)
+       return response
+    }
+    catch(err){
+return err
+    }
+}
 
 export{
     createNewBook,
+    deleteBook
 }
