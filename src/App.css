@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
@@ -39,4 +39,50 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+#sideMenu{
+  display: flex;
+  background-color: red;
+  width: 100px;
+  justify-items: center;
+  height:100vh
+}
+
+#Grid {
+  display: flex;
+  justify-content: start;
+  height:100vh;
+
+}
+
+#xlGrid {
+   display: flex;
+   
+}
+
+#CompanyCard {
+
+  display: flex;
+  width: 350px;
+  height: 250px;
+  flex-direction: column;
+  /* background-color: rgba(rgba(0, 255, 225, 0.034), rgb(7, 40, 35), rgba(18, 18, 43, 0.125), 0.5); */
+  background-color: rgb(177, 207, 230);
+  border-radius: 10px;
+  margin: auto
+
+
+}
+
+#CompanyCard h1 {
+  margin-top: 1%;
+}
+
+
+
+#CompanyCard h2 {
+  margin-top: -15px;
+  color: black;
 }
