@@ -36,7 +36,7 @@ return err
 }
 const UpdatePark=async (id, data)=>{
       try{
-        const url=`${baseUrl}/psrk/${id}`
+        const url=`${baseUrl}/park/${id}`
        const response=await axios.put(url, data)
        return response
     }
