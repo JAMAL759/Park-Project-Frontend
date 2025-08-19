@@ -4,19 +4,17 @@ import { CompanyCreation } from './CompanyCreate';
 import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from 'react';
 import { listAdminById } from '../../lib/Admin/api';
-import CompnayDelete from "./CompnayDelete"
+import CompnayDelete from './CompnayDelete';
 import CompanyUpdate from './CompanyUpdate';
-
 import "../../App.css"
 
 
 const CompanyListC = ({ ID }) => {
+
+    //MARK: These are the states
     const [Company, setCompany] = useState([]);
 
     const [Admin, setAdmin] = useState({});
-
-
-    const [isForm, setIsForm] = useState(false);
 
     const [CompanyData, setCompanyData] = useState({
         Name: '',
@@ -26,35 +24,28 @@ const CompanyListC = ({ ID }) => {
         Admin: ''
     })
 
+    const[isOn , setIsOn] = useState(false);
+    const[isOn2 , setIsOn2] = useState(false);
 
-    const [UForm, setUForm] = useState({
-        Name: '',
-        Service: '',
-        AreaSize: '',
-        Location: '',
-        Admin: ''
-    })
-
+    //MARK: Making the required Handles 
     const handleChange = (event) => {
         setCompanyData({ ...CompanyData, [event.target.name]: event.target.value });
     }
 
-
-    const handleChangeU = (data) => {
-        setUForm({ ...UForm,  data });
+    const handleChecker = () => {
+            setIsOn(true);
+            console.log("This is the condition of isOn = " , isOn);
     }
 
 
+    const handleCheckerCreate = () => {
+        let condition = false
+        setIsOn2(!condition);
+        console.log("This is the condition of isOn = " , isOn2);
+}
 
-    const handleChecker = (data) => {
 
-        setIsForm(true);
-
-
-        console.log("This is FormU = ", isForm)
-        handleChangeU(data)
-    }
-
+    //MARK: Making the fetching from the database using axios 
     const CompanyGetter = async () => {
 
         const urlCall = await axios.get("http://localhost:3000/company");
@@ -67,16 +58,15 @@ const CompanyListC = ({ ID }) => {
         CompanyGetter();
     }, []);
 
-
-
   
+
 
 
     return (
 
         <>
 
-            <div id="gridCompanyxll">
+            <ol>
 
                 {
 
@@ -93,14 +83,11 @@ const CompanyListC = ({ ID }) => {
                                         <h2 id="h2COmpanyCard"> Service : {Company.Service}</h2>
                                         <h2 id="h2COmpanyCard2" > area size : {Company.AreaSize}</h2>
                                         <h2> Location: {Company.Location}</h2>
-
-
-
-                                        {Company.Admin.map((obj) => {
+                                        {Company.Admin.map ((obj) => {
 
                                             return (
                                                 <>
-                                                    <h2> {obj.Name} </h2>
+                                                <h2> {obj.Name} </h2>
                                                 </>
                                             )
                                         })}
@@ -117,26 +104,40 @@ return err
 } */}
                                     </div>
                                 </div>
-                                <div id='delete-container'>
-                                    <CompnayDelete
-                                        ID={Company._id} />
+
+                                <CompnayDelete ID ={Company._id} />
+                                <button onClick={handleChecker}> Press to Update </button>
+                        
 
 
-                                </div>
+                                  {isOn ? 
+                                  
+                                  <CompanyUpdate company ={Company} setIsShow = {isOn}  />
+                                  
+                                     : 
+                                     
+                                     "" }
+                               
+                            </>
+                        )
 
-                                <button onClick={handleChecker(Company)}>update</button>
-                                {
-
-                                }
 
 
-                                {/* {isForm 
-                                            
-                                            ? 
+                    })
 
-                                             <> 
+                
+                   
+                }
 
-<form
+              
+                { <button onClick={handleCheckerCreate}> Press to Create </button> }
+
+                                  {isOn2
+                                    
+                                     ? 
+                                     <>
+                                     
+                                     <form
 
 >
     <label htmlFor="Name" >Name</label>
@@ -182,34 +183,16 @@ return err
 
     <CompanyCreation data={CompanyData} />
 
-</form> */}
-
-
-                                {/* </>  
-                                            
-                                            : 
-                                            "ds"} */}
-                            </>
-                        )
-
-                    })
-
-
-
-
-                }
-
-                <div> 
-               { isForm
-                    ?
-                    <CompanyUpdate company={UForm} setIsShow={isForm}/>
-                    : 
-                    null
-               }
-                </div>
-
-
-
+</form>
+                                     
+                                     </>
+                                    
+                                    
+                                
+                                     :
+                                     
+                                     
+                                     "" } 
 
                 {/* <form
 
@@ -261,7 +244,7 @@ return err
 
 
 
-            </div>
+            </ol>
 
 
 
