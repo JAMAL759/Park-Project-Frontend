@@ -4,12 +4,15 @@ import { CompanyCreation } from './CompanyCreate';
 import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from 'react';
 import { listAdminById } from '../../lib/Admin/api';
-
-
+import CompnayDelete from './CompnayDelete';
+import CompanyUpdate from './CompanyUpdate';
 import "../../App.css"
+import { Link } from 'react-router';
 
 
 const CompanyListC = ({ ID }) => {
+
+    //MARK: These are the states
     const [Company, setCompany] = useState([]);
 
     const [Admin, setAdmin] = useState({});
@@ -19,14 +22,32 @@ const CompanyListC = ({ ID }) => {
         Service: '',
         AreaSize: '',
         Location: '',
+        ParkNumber: 0,
         Admin: ''
     })
 
+    const[isOn , setIsOn] = useState(false);
+    const[isOn2 , setIsOn2] = useState(false);
+
+    //MARK: Making the required Handles 
     const handleChange = (event) => {
         setCompanyData({ ...CompanyData, [event.target.name]: event.target.value });
     }
 
+    const handleChecker = () => {
+            setIsOn(true);
+            console.log("This is the condition of isOn = " , isOn);
+    }
 
+
+    const handleCheckerCreate = () => {
+        let condition = false
+        setIsOn2(!condition);
+        console.log("This is the condition of isOn = " , isOn2);
+}
+
+
+    //MARK: Making the fetching from the database using axios 
     const CompanyGetter = async () => {
 
         const urlCall = await axios.get("http://localhost:3000/company");
@@ -58,6 +79,7 @@ const CompanyListC = ({ ID }) => {
 
 
                             <>
+                            <Link to=  {`/Park/${Company._id}`}>           
                                 <div id="CardMainGrid">
                                     <div key={id} id="CompanyCard">
                                         <h1>{Company.Name}</h1>
@@ -85,20 +107,106 @@ return err
 } */}
                                     </div>
                                 </div>
+                                </Link>
+
+                                <CompnayDelete ID ={Company._id} />
+                                <button onClick={handleChecker}> Press to Update </button>
+                        
+
+
+                                  {isOn ? 
+                                  
+                                  <CompanyUpdate company ={Company} setIsShow = {isOn}  />
+                                  
+                                     : 
+                                     
+                                     "" }
+                               
                             </>
                         )
 
+
+
                     })
 
-
-
-
+                
+                   
                 }
 
+              
+                { <button onClick={handleCheckerCreate}> Press to Create </button> }
+
+                                  {isOn2
+                                    
+                                     ? 
+                                     <>
+                                     
+                                     <form
+
+>
+    <label htmlFor="Name" >Name</label>
+    <input
+
+        name="Name"
+        onChange={handleChange}
+        value={CompanyData.title}
+    />
+
+    <label htmlFor="Service" >Service</label>
+    <input
+
+        name="Service"
+        onChange={handleChange}
+        value={CompanyData.Service}
+    />
+
+    <label htmlFor="AreaSize" >AreaSize</label>
+    <input
+
+        name="AreaSize"
+        onChange={handleChange}
+        value={CompanyData.AreaSize}
+    />
+
+    <label htmlFor="Location" >Location</label>
+    <input
+
+        name="Location"
+        onChange={handleChange}
+        value={CompanyData.Location}
+    />
 
 
+<label htmlFor="ParkNumber" >Park number</label>
+    <input
+        type ="number"
+        name="ParkNumber"
+        onChange={handleChange}
+        value={CompanyData.Location}
+    />
 
-                <form
+    <label htmlFor="Admin" >Admin</label>
+    <input
+
+        name="Admin"
+        onChange={handleChange}
+        value={CompanyData.Admin}
+    />
+
+    <CompanyCreation data={CompanyData} />
+
+</form>
+                                     
+                                     </>
+                                    
+                                    
+                                
+                                     :
+                                     
+                                     
+                                     "" } 
+
+                {/* <form
 
                 >
                     <label htmlFor="Name" >Name</label>
@@ -144,11 +252,16 @@ return err
 
                     <CompanyCreation data={CompanyData} />
 
-                </form>
+                </form> */}
 
 
 
             </ol>
+
+   
+    
+  
+    
 
 
 

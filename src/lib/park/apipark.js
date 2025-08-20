@@ -6,6 +6,7 @@ const createNewPark =async (data) =>{
     try{
         const url=`${baseUrl}/park/new`
        const response=await axios.post(url,data)
+       console.log("In the create function");
        return response
     }
     catch(err){

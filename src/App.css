@@ -44,10 +44,12 @@
 
 #sideMenu{
   display: flex;
-  background-color: red;
+  background-color:  #242424;
   width: 100px;
   justify-items: center;
-  height:100vh
+  height:100vh;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
 }
 
 #Grid {
@@ -75,7 +77,7 @@
 
   display: flex;
   width: 350px;
-  height: 250px;
+  height: 450px;
   flex-direction: column;
   /* background-color: rgba(rgba(0, 255, 225, 0.034), rgb(7, 40, 35), rgba(18, 18, 43, 0.125), 0.5); */
   background-color: rgb(177, 207, 230);
@@ -92,7 +94,58 @@
 
 
 #CompanyCard h2 {
-  margin-top: -15px;
+  /* margin-top: -15px; */
   color: black;
 }
 
+
+
+#spacebetween { 
+  display: flex;
+  /* margin-top: 2%; */
+}
+
+#gridCompanyxll{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
+#gridCompanyxll button{
+  width:350px
+}
+
+#delete-container{
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+
+#ParkGrid{
+display: flex;
+flex-wrap: wrap;
+width: 600px;
+height: 100%;
+justify-content: space-evenly;
+}
+.park{
+  width: 120px;
+  height: 180px;
+  background-color: #242424;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+  box-shadow: 5px 5px 15px 5px #000000;
+  border-radius: 10px;
+  margin-top: 2%;
+}
+
+             
+
+#AllGrid {
+  display: flex;
+  flex-direction: row;
+  gap: 700px
+}
+
+/* <div class="park"> </di */

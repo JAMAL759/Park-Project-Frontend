@@ -5,7 +5,9 @@ import CompanyUpdate from "./CompnayDelete"
 import{ClipLoader} from "react-spinners";
 import { useEffect , useState } from 'react';
 
-const Companies = ({ID}) => {
+
+
+const CompanyListU = ({ID}) => {
     const[Company , setCompany] = useState([]);
 
     const [CompanyData , setCompanyData] = useState({
@@ -49,11 +51,7 @@ const Companies = ({ID}) => {
 
                                 
                                 <>
-                                    <p>{Company.title}</p>
-                                    <CompanyUpdate
-                                        ID={Company._id}
-                                        AllCompany={getAllPets}
-                                    />
+                               
 
 
 <h3> {Track.title} </h3>
@@ -98,4 +96,4 @@ const Companies = ({ID}) => {
 }
 
 
-export default Companies;
+export default CompanyListU;

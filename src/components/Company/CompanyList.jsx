@@ -35,7 +35,6 @@ const CompanyList = () => {
                                     <p>{Company.title}</p>
                                     <CompnayDelete
                                         ID={Company._id}
-                                        AllCompany={getAllPets}
                                     />
                                 </>
                             )
