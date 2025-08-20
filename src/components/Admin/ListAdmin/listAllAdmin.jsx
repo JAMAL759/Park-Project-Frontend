@@ -4,79 +4,53 @@ import { ListAllAdmin } from "../../../lib/Admin/api"
 import AdminDeleteButton from "./deleteBtn"
 import UpdateAdminForm from "./Updatebtn"
 import AddAdminForm from "../FormAddNewAdmin/FormAddNewAdmin"
+import './admin.css'
+
 const AddminListPage = () => {
     const [admin, setAdmin] = useState([])
     const [formIsShow, setFormIsShow] = useState(false)
-    const [formIsShowUpdate, setFormIsUpdate] = useState(false)
     const [adminToUpdate, setAdminToUpdate] = useState(null)
+
     async function fetchAdmins() {
         const admins = await ListAllAdmin()
-        console.log(admins)
         setAdmin(admins)
-
     }
 
-    const handleShowFormCLick = () => {
-        setFormIsShow(true)
-    }
-    const handleShowFormCLickUpdate = () => {
-     
-        setFormIsUpdate(true)
-    }
+    const handleShowFormCLick = () => setFormIsShow(true)
+    const handleShowFormClickUpdate = (admins) => setAdminToUpdate(admins)
 
     useEffect(() => {
         fetchAdmins()
     }, [])
 
     return (
-        <div>
-            <button onClick={handleShowFormCLick}>Add new admin</button>
-            {
-                formIsShow
-                    ?
-                    <AddAdminForm setFormIsShown={setFormIsShow} />
-                    :
-                    null
-            }
-
-
-            <ol>
-
-                {
-                    admin.length
-                        ?
-                        admin.map((admins, i) => {
-                            return (
-                                <div key={i}>
-                                    <p >{admins.Name}</p>
-                                    <p >{admins.email}</p>
-
-
-                                    <button onClick={handleShowFormCLickUpdate}>Update</button>
-                                    <AdminDeleteButton AdminId ={admins._id}  />
-
-                                       {
-                                        formIsShowUpdate
-                                            ?
-                                            <UpdateAdminForm admin={admins} setFormIsShown={setFormIsShow} />
-                                            :
-                                            null
-                                    }   
-                                </div>
-                                
-
-                            )
-                        })
-                        
-                               
-                        :
-                        <ClipLoader color="#FF00FF" />
-
+        <div className="container">
+            <button className="button-add" onClick={handleShowFormCLick}>Add new admin</button>
+            {formIsShow && <div className="form-container"><AddAdminForm setFormIsShown={setFormIsShow} /></div>}
+            <ol className="admin-list">
+                {admin.length
+                    ? admin.map((admins) => (
+                          <div key={admins._id} className="admin-card">
+                              <div className="admin-info">
+                                  <p className="name">{admins.Name}</p>
+                                  <p className="email">{admins.email}</p>
+                              </div>
+                              <div className="admin-actions">
+                                  <button className="button-update" onClick={() => handleShowFormClickUpdate(admins)}>Update</button>
+                                  <AdminDeleteButton AdminId={admins._id} className="button-delete" />
+                              </div>
+                              {adminToUpdate && adminToUpdate._id === admins._id && (
+                                  <div className="update-form-wrapper">
+                                      <UpdateAdminForm admin={adminToUpdate} setFormIsShown={setAdminToUpdate} />
+                                  </div>
+                              )}
+                          </div>
+                      ))
+                    : <div className="loader"><ClipLoader color="#FF00FF" /></div>
                 }
             </ol>
-
-    {/* if there is an admin to update render the update admin form component and hand it the admin to update as props */}
         </div>
     )
 }
+
 export default AddminListPage

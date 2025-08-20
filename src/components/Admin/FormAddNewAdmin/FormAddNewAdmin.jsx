@@ -28,6 +28,7 @@ const AddAdminForm=({setFormIsShown})=>{
         setIsSubmitting(true)
         const response = await create(formData)
         console.log(response)
+                window.location.reload()
         if (response.status === 201) {
           setFormIsShown(false)
         }

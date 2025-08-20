@@ -1,0 +1,113 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #1f2937;
+}
+
+.button-add {
+    padding: 10px 20px;
+    background-color: #4F46E5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.admin-info p {
+    margin: 0;
+}
+
+.admin-info .name {
+    font-weight: bold;
+    color: #111827;
+}
+
+.admin-info .email {
+    color: #6b7280;
+}
+
+.button-update {
+    padding: 5px 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-delete {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.update-form-wrapper {
+    margin-top: 10px;
+    width: 100%;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4F46E5;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: yellow; 
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}

@@ -6,9 +6,10 @@ import ParkList from './components/park/ParkList'
 import { BrowserRouter as  Router , Route , Routes  } from 'react-router'
 import ParkListV from './components/park/ParkListV'
 import './App.css'
-
+import AdminHomePage from './components/Admin/homePage/homepage'
+import AddminListPage from './components/Admin/ListAdmin/listAllAdmin'
 import CompanyListC from './components/Company/CompanyListC';
-
+import NavBar from './components/Admin/homePage/navBar'
 
 const App = () => {
 
@@ -19,10 +20,10 @@ const App = () => {
 
 <Router>
 
-
+<NavBar/>
 <Routes> 
-
-
+ <Route path='/' element={<AdminHomePage/>} />
+ <Route path='/admin' element={<AddminListPage/>} /> 
 <Route path = "/Park/:id"element={   <ParkList />}/> 
 <Route path = "/Park/company"element= {< CompanyListC />} /> 
 <Route path = "/Park/:id/view" element = {< ParkListV/> }/>
