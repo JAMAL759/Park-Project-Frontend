@@ -1,7 +1,4 @@
 
-import { useEffect, useState } from 'react'
-import { ClipLoader } from 'react-spinners'
-import { Link } from 'react-router'
 import ParkList from './components/park/ParkList'
 import { BrowserRouter as  Router , Route , Routes  } from 'react-router'
 import ParkListV from './components/park/ParkListV'
@@ -71,4 +68,3 @@ const App = () => {
 
 
 export default App
-

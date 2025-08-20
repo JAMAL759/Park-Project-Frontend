@@ -5,7 +5,6 @@ const NavBar = () => {
         <>
             <Link to='/'>Home</Link>
             <Link to='/admin'>Admins</Link>
-             {/* <Link to='/company'>Companies</Link> */}
 
         </>
     )
