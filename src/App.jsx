@@ -1,70 +1,48 @@
+import { jwtDecode } from 'jwt-decode'
+import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import LoginForm from './components/auth/loginPAge'
+import SignUp from './components/auth/signUpForm'
+import ListAdminPage from './components/Admin/homePage/ListHomePageAdmin'
 
-import ParkList from './components/park/ParkList'
-import { BrowserRouter as  Router , Route , Routes  } from 'react-router'
-import ParkListV from './components/park/ParkListV'
-import './App.css'
-
-import CompanyListC from './components/Company/CompanyListC';
-
-
-const App = () => {
-
+function LogoutButton({ onLogout }) {
   return (
-    <>
-  <div id="xlGrid">
-  <div id="Grid">
-
-<Router>
-
-
-<Routes> 
-
-
-<Route path = "/Park/:id"element={   <ParkList />}/> 
-<Route path = "/Park/company"element= {< CompanyListC />} /> 
-<Route path = "/Park/:id/view" element = {< ParkListV/> }/>
-
-</Routes>
-
-
-</Router>
-
-
-<> 
-     {/* <div id="sideMenu">
-      <ul> 
-            <li> <Link to = {"/Park/Parking"}> Parking</Link> </li>
-            <li>  <Link to = {"/Park/Admin"}> Admin</Link> </li>
-            <li> <Link to = {"/Park/Companies"}> Companies</Link>  </li>
-            </ul>
-          </div> */}
-    </>
-
-
-    
-
-
-     
-
-         
-
-        </div>
-
-       
-<div>
-
-
-{/* <CompanyListC /> */}
-{/* { < ParkList/>} */}
-
-</div>
-
-
-      </div>
-
-    </>
+    <button onClick={onLogout}>
+      Logout
+    </button>
   )
 }
 
+function App() {
+  const [token, setToken] = useState(localStorage.getItem('token'))
+
+  function handleLogin(newToken) {
+    setToken(newToken)
+    localStorage.setItem('token', newToken)
+  }
+
+  function handleLogout() {
+    setToken(null)
+    localStorage.removeItem('token')
+  }
+
+  if (token) {
+    const decodedToken = jwtDecode(token)
+    console.log(decodedToken)
+  }
+
+  return (
+    <Router>
+      <div>
+        {token ? <LogoutButton onLogout={handleLogout} /> : null}
+        <Routes>
+          <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/admins" element={<ListAdminPage />} />
+        </Routes>
+      </div>
+    </Router>
+  )
+}
 
 export default App

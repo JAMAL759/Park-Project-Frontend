@@ -25,7 +25,7 @@ function SignUp() {
     <form onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
       <input 
-        placeholder="Username"
+        placeholder="email"
         value={email}
         onChange={event => setEmail(event.target.value)}
       />
