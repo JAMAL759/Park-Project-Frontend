@@ -1,7 +1,8 @@
 import{useState} from "react"
 import { create } from "../../../lib/Admin/api"
 
-const AddAdminForm=()=>{
+const AddAdminForm=({setFormIsShown})=>{
+     const [isSubmitting, setIsSubmitting] = useState(false)
     const [formData,setFormData]=useState({
          Name: '',
     email: '',
@@ -22,9 +23,15 @@ const AddAdminForm=()=>{
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
+    event.preventDefault()
+        if (isSubmitting) return
+        setIsSubmitting(true)
         const response = await create(formData)
         console.log(response)
+        if (response.status === 201) {
+          setFormIsShown(false)
+        }
+        setIsSubmitting(false)
     }
 
     return (

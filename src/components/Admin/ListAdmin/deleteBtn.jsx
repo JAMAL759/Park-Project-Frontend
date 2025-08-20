@@ -1,9 +1,9 @@
 import { deleteAdmin } from "../../../lib/Admin/api"
-const AdminDeleteButton = ({ AdminId ,getAllAdmin}) => {
+const AdminDeleteButton = ({ AdminId }) => {
 
     const handleDelete = async () => {
         await deleteAdmin(AdminId)
-        getAllAdmin()
+        
     }
     return (
         <button onClick={handleDelete}>Delete</button>

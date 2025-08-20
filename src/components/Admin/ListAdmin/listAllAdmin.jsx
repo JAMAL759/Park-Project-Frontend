@@ -6,12 +6,22 @@ import UpdateAdminForm from "./Updatebtn"
 import AddAdminForm from "../FormAddNewAdmin/FormAddNewAdmin"
 const AddminListPage = () => {
     const [admin, setAdmin] = useState([])
-
+    const [formIsShow, setFormIsShow] = useState(false)
+    const [formIsShowUpdate, setFormIsUpdate] = useState(false)
+    const [adminToUpdate, setAdminToUpdate] = useState(null)
     async function fetchAdmins() {
         const admins = await ListAllAdmin()
         console.log(admins)
         setAdmin(admins)
 
+    }
+
+    const handleShowFormCLick = () => {
+        setFormIsShow(true)
+    }
+    const handleShowFormCLickUpdate = () => {
+     
+        setFormIsUpdate(true)
     }
 
     useEffect(() => {
@@ -20,7 +30,15 @@ const AddminListPage = () => {
 
     return (
         <div>
-            <AddAdminForm />
+            <button onClick={handleShowFormCLick}>Add new admin</button>
+            {
+                formIsShow
+                    ?
+                    <AddAdminForm setFormIsShown={setFormIsShow} />
+                    :
+                    null
+            }
+
 
             <ol>
 
@@ -32,18 +50,32 @@ const AddminListPage = () => {
                                 <div key={i}>
                                     <p >{admins.Name}</p>
                                     <p >{admins.email}</p>
-                                    <UpdateAdminForm admin={admins} />
 
+
+                                    <button onClick={handleShowFormCLickUpdate}>Update</button>
+                                    <AdminDeleteButton AdminId ={admins._id}  />
+
+                                       {
+                                        formIsShowUpdate
+                                            ?
+                                            <UpdateAdminForm admin={admins} setFormIsShown={setFormIsShow} />
+                                            :
+                                            null
+                                    }   
                                 </div>
-
-
+                                
 
                             )
-                        }) :
+                        })
+                        
+                               
+                        :
                         <ClipLoader color="#FF00FF" />
 
                 }
             </ol>
+
+    {/* if there is an admin to update render the update admin form component and hand it the admin to update as props */}
         </div>
     )
 }
