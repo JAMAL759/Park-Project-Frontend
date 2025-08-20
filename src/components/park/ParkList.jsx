@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import { createNewPark, UpdatePark, deletePark, ListAllPark, listParkById } from "../../lib/park/apipark";
 import '../../App.css'
+import axios from 'axios'
 
 import { useParams } from "react-router";
 
 
 
 const ParkList = () => {
-    
+
     const params = useParams() 
     //MARK: using state
 
-    const slots = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const [slots, setSlots] = useState([])
+
     const [Park, setPark] = useState({});
 
     const [Company, setCompany] = useState([]);
+    
+    const[Companies , setCompanies] = useState([]);
 
     const [ParkForm, setParkForm] = useState({
         state: "",
@@ -25,6 +29,7 @@ const ParkList = () => {
         slot:""
     })
 
+ 
     //MARK: Handler creation
 
     const handlerGetter = () => {
@@ -53,16 +58,31 @@ const ParkList = () => {
 
     //MARK: CompanyGetter (outside Model) 
 
+    const CompanyGetterByID = async () => {
+
+        const urlCall = await axios.get(`http://localhost:3000/company/${params.id}`);
+        console.log(urlCall);
+        setCompany(urlCall.data);
+        setSlots(Array.from({ length: urlCall.data.ParkNumber })        )
+        
+
+    }
+
     const CompanyGetter = async () => {
 
         const urlCall = await axios.get("http://localhost:3000/company");
         console.log(urlCall);
         setCompany(urlCall.data);
     }
+    
+    
+ 
 
 
     useEffect(() => {
+        CompanyGetterByID()
         handlerGetter();
+        
     }, [])
 
     return (
@@ -70,7 +90,7 @@ const ParkList = () => {
         <>
 
             { }
-
+<div id="AllGrid"> 
 
             {<form onSubmit={handlerSubmit}>
 
@@ -80,7 +100,8 @@ const ParkList = () => {
                     <option value="available"> available </option>
                     <option value="unavailable"> unavailable </option>
                 </select>
-
+        <br/> 
+        <br/> 
                 <label htmlFor="StartTime" >StartTime</label>
                 <input
                     type="date"
@@ -88,6 +109,8 @@ const ParkList = () => {
                     onChange={handlerReader}
                     value={ParkForm.StartTime}
                 />
+                    <br/> 
+                    <br/> 
 
                 <label htmlFor="EndTime" >EndTime</label>
                 <input
@@ -96,7 +119,8 @@ const ParkList = () => {
                     onChange={handlerReader}
                     value={ParkForm.EndTime}
                 />
-
+    <br/> 
+    <br/> 
 
 
                 <label htmlFor="Paid" >Paid</label>
@@ -106,6 +130,10 @@ const ParkList = () => {
                     <option value={false}> False </option>
                 </select>
 
+
+                <br/> 
+                <br/> 
+
                 <label htmlFor="slot" >slot</label>
                 <input
                     type="text"
@@ -114,14 +142,25 @@ const ParkList = () => {
                     value={ParkForm.slot}
                 />
 
-                <label htmlFor="Companies" >Company</label>
+<br/> 
+<br/> 
+
+                <label htmlFor="Companies"  hidden>Company</label>
+
+
+                
+
+
                 <input
 
                     name="Companies"
                     onChange={handlerReader}
-                    value={ParkForm.Companies}
+                    value={params.id}
+                    hidden
                 />
 
+<br/> 
+<br/> 
                 <button type="submit"> Submit </button>
 
             </form>}
@@ -130,11 +169,11 @@ const ParkList = () => {
             {
 
                 <div id="ParkGrid">
-                    {slots.map((parkingNum) => {
+                    {slots.map((parkingNum , id) => {
 
                         return (
-                            <button onClick={()=>{        setParkForm({ ...ParkForm, slot: `${parkingNum}f` });
-                        }}  class="park"> </button>
+                            <button onClick={()=>{        setParkForm({ ...ParkForm, slot: `${id}f` });
+                        }}  class="park"> Park {id} </button>
 
                         )
                     })
@@ -152,7 +191,7 @@ const ParkList = () => {
 
             }
 
-
+</div>
         </>
 
     )

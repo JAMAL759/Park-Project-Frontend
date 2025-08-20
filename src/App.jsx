@@ -22,9 +22,11 @@ const App = () => {
 <Routes> 
 
 
-{/* <Route to = ""> <ParkList /> </Route> */}
+<Route path = "/Park/:id"element={   <ParkList />}/> 
+<Route path = "/Park/company"element= {< CompanyListC />} /> 
 
 </Routes>
+
 
 </Router>
 
@@ -51,10 +53,11 @@ const App = () => {
 
        
 <div>
-<h1> Welcome </h1>
+
 
 {/* <CompanyListC /> */}
-{ < ParkList/>}
+{/* { < ParkList/>} */}
+
 </div>
 
 
