@@ -7,6 +7,7 @@ import { listAdminById } from '../../lib/Admin/api';
 import CompnayDelete from './CompnayDelete';
 import CompanyUpdate from './CompanyUpdate';
 import "../../App.css"
+import { Link } from 'react-router';
 
 
 const CompanyListC = ({ ID }) => {
@@ -78,6 +79,7 @@ const CompanyListC = ({ ID }) => {
 
 
                             <>
+                            <Link to=  {`/Park/${Company._id}`}>           
                                 <div id="CardMainGrid">
                                     <div key={id} id="CompanyCard">
                                         <h1>{Company.Name}</h1>
@@ -105,6 +107,7 @@ return err
 } */}
                                     </div>
                                 </div>
+                                </Link>
 
                                 <CompnayDelete ID ={Company._id} />
                                 <button onClick={handleChecker}> Press to Update </button>
@@ -254,6 +257,11 @@ return err
 
 
             </ol>
+
+   
+    
+  
+    
 
 
 

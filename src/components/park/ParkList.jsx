@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { createNewPark, UpdatePark, deletePark, ListAllPark, listParkById } from "../../lib/park/apipark";
 import '../../App.css'
 
+import { useParams } from "react-router";
 
 
-const ParkList = (id) => {
 
+const ParkList = () => {
+    
+    const params = useParams() 
     //MARK: using state
 
     const slots = [1, 2, 3, 4, 5, 6, 7, 8, 9]
