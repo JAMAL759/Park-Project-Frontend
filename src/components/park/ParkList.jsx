@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 import { createNewPark, UpdatePark, deletePark, ListAllPark, listParkById } from "../../lib/park/apipark";
-import  '../../App.css'
+import '../../App.css'
 
 
-const ParkList = () => {
+
+const ParkList = (id) => {
 
     //MARK: using state
 
+    const slots = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const [Park, setPark] = useState({});
+
+    const [Company, setCompany] = useState([]);
 
     const [ParkForm, setParkForm] = useState({
         state: "",
         StartTime: new Date("2022-03-25"),
         EndTime: new Date("2022-03-25"),
         Paid: false,
-        Companies: ""
+        Companies: "",
+        slot:""
     })
 
     //MARK: Handler creation
@@ -43,6 +48,15 @@ const ParkList = () => {
 
     }
 
+    //MARK: CompanyGetter (outside Model) 
+
+    const CompanyGetter = async () => {
+
+        const urlCall = await axios.get("http://localhost:3000/company");
+        console.log(urlCall);
+        setCompany(urlCall.data);
+    }
+
 
     useEffect(() => {
         handlerGetter();
@@ -52,33 +66,16 @@ const ParkList = () => {
 
         <>
 
-         {
-            <div id="ParkGrid">
-                
-             
-                <button class="park"> </button>
-                <button class="park"> </button>
-                <button class="park"> </button>
-                <button class="park"> </button>
-                
-
-                <button class="park"> </button>
-                <button class="park"> </button>
-                <button class="park"> </button>
-                <button class="park"> </button>
-                
-                 </div>
-         
-         }
+            { }
 
 
-            {/* <form onSubmit={handlerSubmit}>
+            {<form onSubmit={handlerSubmit}>
 
                 <label htmlFor="state" >state</label>
                 <select name="state" onChange={handlerReader} >
 
-                    <option value= "available"> available </option>
-                    <option value= "unavailable"> unavailable </option>
+                    <option value="available"> available </option>
+                    <option value="unavailable"> unavailable </option>
                 </select>
 
                 <label htmlFor="StartTime" >StartTime</label>
@@ -106,8 +103,15 @@ const ParkList = () => {
                     <option value={false}> False </option>
                 </select>
 
+                <label htmlFor="slot" >slot</label>
+                <input
+                    type="text"
+                    name="slot"
+                    onChange={handlerReader}
+                    value={ParkForm.slot}
+                />
 
-                <label htmlFor="Companies" >Paid</label>
+                <label htmlFor="Companies" >Company</label>
                 <input
 
                     name="Companies"
@@ -117,7 +121,33 @@ const ParkList = () => {
 
                 <button type="submit"> Submit </button>
 
-            </form> */}
+            </form>}
+
+
+            {
+
+                <div id="ParkGrid">
+                    {slots.map((parkingNum) => {
+
+                        return (
+                            <button onClick={()=>{        setParkForm({ ...ParkForm, slot: `${parkingNum}f` });
+                        }}  class="park"> </button>
+
+                        )
+                    })
+
+                    }
+
+                </div>
+
+
+
+
+
+
+
+
+            }
 
 
         </>
