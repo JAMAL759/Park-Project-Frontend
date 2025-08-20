@@ -121,3 +121,24 @@ box-shadow: 5px 5px 15px 5px #000000;
   justify-content: center;
   margin: 15px 0;
 }
+
+
+#ParkGrid{
+display: flex;
+flex-wrap: wrap;
+width: 70%;
+height: 100%;
+justify-content: space-evenly;
+}
+.park{
+  width: 200px;
+  height: 280px;
+  background-color: #242424;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+  box-shadow: 5px 5px 15px 5px #000000;
+  border-radius: 10px;
+}
+
+                
+
+/* <div class="park"> </di */

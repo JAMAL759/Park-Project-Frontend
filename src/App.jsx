@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 import { Link } from 'react-router'
+
 import { BrowserRouter as  Router , Route , Routes  } from 'react-router'
 
 import './App.css'
 
-import CompanyListC from './components/Company/CompanyListC'
-
+import CompanyListC from './components/Company/CompanyListC';
+import ParkList from './components/park/ParkList';
 
 const App = () => {
 
@@ -15,7 +16,7 @@ const App = () => {
   <div id="xlGrid">
   <div id="Grid">
 
-<Router>
+{/* <Router>
 
 <Routes>
 
@@ -31,7 +32,7 @@ const App = () => {
     </>}/>
 </Routes>
 
-</Router>
+</Router> */}
 
 
     
@@ -47,7 +48,8 @@ const App = () => {
 <div>
 <h1> Welcome </h1>
 
-<CompanyListC />
+{/* <CompanyListC /> */}
+{ < ParkList/>}
 </div>
 
 

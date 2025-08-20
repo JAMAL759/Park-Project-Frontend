@@ -21,6 +21,7 @@ const CompanyListC = ({ ID }) => {
         Service: '',
         AreaSize: '',
         Location: '',
+        ParkNumber: 0,
         Admin: ''
     })
 
@@ -172,6 +173,14 @@ return err
         value={CompanyData.Location}
     />
 
+
+<label htmlFor="ParkNumber" >Park number</label>
+    <input
+        type ="number"
+        name="ParkNumber"
+        onChange={handleChange}
+        value={CompanyData.Location}
+    />
 
     <label htmlFor="Admin" >Admin</label>
     <input
