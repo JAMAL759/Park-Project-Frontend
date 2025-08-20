@@ -3,7 +3,7 @@ import { createNewPark, UpdatePark, deletePark, ListAllPark, listParkById } from
 import '../../App.css'
 import axios from 'axios'
 
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 
 
@@ -162,6 +162,11 @@ const ParkList = () => {
 <br/> 
 <br/> 
                 <button type="submit"> Submit </button>
+                <Link to = {`/Park/${params.id}/view`}>  
+            
+            View
+        </Link>
+        
 
             </form>}
 
@@ -190,8 +195,12 @@ const ParkList = () => {
 
 
             }
+         
 
 </div>
+
+
+
         </>
 
     )

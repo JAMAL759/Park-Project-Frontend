@@ -3,7 +3,7 @@ import { ClipLoader } from 'react-spinners'
 import { Link } from 'react-router'
 import ParkList from './components/park/ParkList'
 import { BrowserRouter as  Router , Route , Routes  } from 'react-router'
-
+import ParkListV from './components/park/ParkListV'
 import './App.css'
 
 import CompanyListC from './components/Company/CompanyListC';
@@ -24,6 +24,7 @@ const App = () => {
 
 <Route path = "/Park/:id"element={   <ParkList />}/> 
 <Route path = "/Park/company"element= {< CompanyListC />} /> 
+<Route path = "/Park/:id/view" element = {< ParkListV/> }/>
 
 </Routes>
 
