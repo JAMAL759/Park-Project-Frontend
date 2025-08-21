@@ -56,8 +56,16 @@ const CompanyListC = ({ ID }) => {
     }
 
 
+      const AdminGetter = async () => {
+
+        const urlCall = await axios.get("http://localhost:3000/admin");
+        console.log(urlCall);
+        setAdmin(urlCall.data);
+    }
+
     useEffect(() => {
         CompanyGetter();
+        Admin();
     }, []);
 
   
@@ -182,10 +190,20 @@ return err
         type ="number"
         name="ParkNumber"
         onChange={handleChange}
-        value={CompanyData.Location}
+        value={CompanyData.ParkNumber}
     />
 
     <label htmlFor="Admin" >Admin</label>
+
+    <select name="Admin"> 
+
+{Admin.map( (obj) => {
+<option value= {obj._id}> </option>
+})}
+
+
+        
+    </select>
     <input
 
         name="Admin"

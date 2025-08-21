@@ -1,15 +1,15 @@
-import{useState} from "react"
+import { useState } from "react"
 import { UpdateAdmin } from "../../../lib/Admin/api"
 
-const UpdateAdminForm=({admin, setFormIsShown })=>{
-     const [isSubmitting, setIsSubmitting] = useState(false)
-    const id=admin._id
-    const [formData,setFormData]=useState({
-         Name:admin.Name,
-    email:admin.email,
+const UpdateAdminForm = ({ admin, setFormIsShown }) => {
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const id = admin._id
+    const [formData, setFormData] = useState({
+        Name: admin.Name,
+        email: admin.email,
     })
 
-     const handleChange = (event) => {
+    const handleChange = (event) => {
 
 
         const currentFormData = { ...formData }
@@ -22,14 +22,15 @@ const UpdateAdminForm=({admin, setFormIsShown })=>{
     }
 
     const handleSubmit = async (event) => {
-       event.preventDefault()
+        event.preventDefault()
         if (isSubmitting) return
         setIsSubmitting(true)
-          const response = await UpdateAdmin(id,formData)
+        const response = await UpdateAdmin(id, formData)
         console.log(response)
-       
+        window.location.reload()
+
         if (response.status === 201) {
-          setFormIsShown(false)
+            setFormIsShown(false)
         }
         setIsSubmitting(false)
     }
