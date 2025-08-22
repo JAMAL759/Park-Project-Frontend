@@ -4,8 +4,8 @@ import { create } from "../../../lib/Admin/api"
 const AddAdminForm=({setFormIsShown})=>{
      const [isSubmitting, setIsSubmitting] = useState(false)
     const [formData,setFormData]=useState({
+        email: '', 
          Name: '',
-    email: '',
     password:''
 
     })
@@ -39,12 +39,12 @@ const AddAdminForm=({setFormIsShown})=>{
         <div>
             <h2>Add New Admin</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="Name">Name:</label>
-                <input id="Name" name="Name" onChange={handleChange} value={formData.Name} />
                 <label htmlFor="email">Email:</label>
-                <input name="email" id="email" onChange={handleChange} value={formData.email} />
+                <input id="email" name="email" onChange={handleChange} value={formData.email} />
+                <label htmlFor="Name">Name:</label>
+                <input name="Name" id="Name" onChange={handleChange} value={formData.Name} />
                 <label htmlFor="password">Password:</label>
-                <input id="password" name="password" onChange={handleChange} value={formData.password} />
+                <input id="password" name="password" onChange={handleChange} value={formData.password} type="password"/>
                 <button type="submit">Submit</button>
             </form>
         </div>

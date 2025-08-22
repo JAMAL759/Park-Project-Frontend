@@ -1,58 +1,81 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { useState } from "react";
+import axios from "axios";
 
-function LoginForm({ onLogin }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [userType, setUserType] = useState('customer') 
-  const navigate = useNavigate()
+const LoginPage = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = async event => {
-    event.preventDefault()
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
     try {
-      const url = userType === 'admin'
-        ? 'http://localhost:3000/auth/login/admin'
-        : 'http://localhost:3000/auth/login/customer'
+      const res = await axios.post("http://localhost:3000/auth/login", formData);
+      const { token, role } = res.data;
 
-      const res = await axios.post(url, { email, password })
-      
-      localStorage.setItem('token', res.data.token)
-      localStorage.setItem('type', res.data.type)
+      if (token) {
+        localStorage.setItem("token", token);
+      }
+      localStorage.setItem("role", role);
 
-      onLogin(res.data.token)
+      alert("Login successful!");
 
-      if (res.data.type === 'admin') {
-        navigate('/admin')
+      if (role === "customer") {
+        window.location.href = "/customer";
+      } else if (role === "admin") {
+        window.location.href = "/admin";
       } else {
-        navigate('/customer')
+        window.location.href = "/";
       }
     } catch (err) {
-      alert(err.response?.data?.message || 'Login failed')
+     return err
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <select value={userType} onChange={e => setUserType(e.target.value)}>
-        <option value="customer">Customer</option>
-        <option value="admin">Admin</option>
-      </select>
-      <input 
-        placeholder="Email"
-        value={email}
-        onChange={event => setEmail(event.target.value)}
-      />
-      <input 
-        placeholder="Password"
-        type="password"
-        value={password}
-        onChange={event => setPassword(event.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
-  )
-}
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h2>Login</h2>
 
-export default LoginForm
+
+      
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+      
+
+        
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        
+
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default LoginPage;

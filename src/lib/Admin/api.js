@@ -4,9 +4,9 @@ const baseUrl = "http://localhost:3000"
 
 const create =async (data) =>{
     try{
-        const url=`${baseUrl}/admin/new`
+        const url=`${baseUrl}/admin/create`
        const response=await axios.post(url,data)
-       return response
+       return response.data
     }
     catch(err){
 return err
