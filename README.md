@@ -114,9 +114,13 @@ The functionality was used with a try catch method where it provides an error wh
 
 
 (1) Downlaod the prject from github 
+
 (2) Download the backend project from github
+
 (3) Make sure that you run the frontend by calling  npm run dev 
+
 (4) make sure to run the backend by typing nodemon server.js if you don't have nodemon type npm i -g nodemon
+
 (5) Make sure that the cors is connected to localHost://5173 , it has to be 5173 if not you could simply change it depending on what the frontend Run's at it's provided on the console when you runt it 
 
 
