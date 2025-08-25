@@ -32,11 +32,13 @@ CRUD functionality where it takes the link of the localhost to reach the backend
 ## CRUD Functionality
 
 
-import axios from "axios"
 
-const baseUrl = "http://localhost:3000"
+        
+      import axios from "axios"
 
-const createNewPark =async (data) =>{
+      const baseUrl = "http://localhost:3000"
+
+      const createNewPark =async (data) =>{
     try{
         const url=`${baseUrl}/park/new`
        const response=await axios.post(url,data)
@@ -44,20 +46,22 @@ const createNewPark =async (data) =>{
        return response
     }
     catch(err){
-return err
+    return err
     }
-}
-const deletePark=async (id) => {
+    }
+
+    
+    const deletePark=async (id) => {
       try{
         const url=`${baseUrl}/park/${id}`
        const response=await axios.delete(url)
        return response
     }
     catch(err){
-return err
+      return err
     }
-}
-const ListAllPark=async () => {
+      }
+      const ListAllPark=async () => {
       try{
         const url=`${baseUrl}/park/`
         console.log(url)
@@ -66,37 +70,39 @@ const ListAllPark=async () => {
        return response.data
     }
     catch(err){
-return err
+      return err
     }
-}
-const UpdatePark=async (id, data)=>{
+      }
+
+      
+      const UpdatePark=async (id, data)=>{
       try{
         const url=`${baseUrl}/park/${id}`
        const response=await axios.put(url, data)
        return response
     }
-    catch(err){
-return err
+        catch(err){
+      return err
     }
-}
-const listParkById=async (id)=>{
+      }
+      const listParkById=async (id)=>{
       try{
         const url=`${baseUrl}/park/${id}`
        const response=await axios.get(url)
        return response
     }
     catch(err){
-return err
+    return err
     }
-}
+      }
 
-export{
+        export{
     createNewPark,
     deletePark,
     UpdatePark,
     ListAllPark,
     listParkById
-}
+      }
 
 
 The functionality was used with a try catch method where it provides an error whenever their is.
